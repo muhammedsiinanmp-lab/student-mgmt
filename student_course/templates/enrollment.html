@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Courses Page
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> Submit</button>
+</form>
+
+{% for enrollment in enrollments %}
+    <li>
+        {{enrollment.student}} || {{enrollment.course}}
+    </li>
+{% empty %}
+    <li>No Enrollments </li>
+{% endfor %}
+
+{% endblock %}

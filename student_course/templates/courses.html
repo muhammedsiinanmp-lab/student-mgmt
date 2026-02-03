@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Courses Page
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> Submit</button>
+</form>
+
+{% for course in courses %}
+    <li>
+        {{course.title}} || {{course.code}} || {{course.duration_weeks}}
+    </li>
+{% empty %}
+    <li>No Students </li>
+{% endfor %}
+
+{% endblock %}

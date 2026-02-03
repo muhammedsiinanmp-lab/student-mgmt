@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Students Page
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> Submit</button>
+</form>
+
+{% for student in students %}
+    <li>
+        {{student.name}} || {{student.age}} || {{student.email}}
+        <form method="post" action="{% url 'delete_student' student.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">❌</button>
+        </form>
+    </li>
+{% empty %}
+    <li>No Students </li>
+{% endfor %}
+
+{% endblock %}
